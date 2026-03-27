@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
+/* @import "tailwindcss";
 @plugin "daisyui";
 
 @plugin "daisyui/theme"{
-    name: "light";
+    name: "formulario";
     default: true;
-    prefersdark: true;
-    color-scheme: "formulario";
+    prefersdark: false;
+    color-scheme: "light";
     --color-base-100: oklch(97% 0.021 166.113);
     --color-base-200: oklch(95% 0.052 163.051);
     --color-base-300: oklch(90% 0.093 164.15);
@@ -35,4 +35,4 @@
     --border: 1.5px;
     --depth: 1;
     --noise: 1;
-}
+} */

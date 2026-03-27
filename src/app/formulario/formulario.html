@@ -3,29 +3,86 @@
         <div class="card-body">
             <h3 class="card-title">Ficha de Matrícula</h3>
 
-            <form class="grid gap-3" action="">
+            <form class="grid gap-3" #propForm="ngForm" (ngSubmit)="enviar(propForm)">
                 <div class="form-control w-full">
-                    <label class="label" for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required minlength="3" class="input input-bordered w-full" />
+                    <label class="label" for="nome">Nome completo *</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        required
+                        minlength="3"
+                        class="input input-bordered w-full"
+                        [(ngModel)]="nome"
+                        #nomeModel="ngModel"
+                    />
+                    @if ((nomeModel.touched || nomeModel.dirty) && nomeModel.invalid) {
+                        <label class="label">
+                            <span class="label-text-alt text-error">O nome está inválido</span>
+                        </label>
+                    }
                 </div>
 
                 <div class="form-control w-full">
-                    <label class="label" for="email">Email: </label>
-                    <input type="email" id="email" name="email" required class="input input-bordered w-full" />
+                    <label class="label" for="email">E-mail *</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        email
+                        class="input input-bordered w-full"
+                        [(ngModel)]="email"
+                        #emailModel="ngModel"
+                    />
+                    @if ((emailModel.touched || emailModel.dirty) && emailModel.invalid) {
+                        <label class="label">
+                            <span class="label-text-alt text-error">O e-mail está inválido</span>
+                        </label>
+                    }
                 </div>
 
                 <div class="form-control w-full">
-                    <label class="label" for="idade">Idade: </label>
-                    <input type="number" id="idade" name="idade" required min="18" class="input input-bordered w-full" />
+                    <label class="label" for="idade">Idade *</label>
+                    <input
+                        type="number"
+                        id="idade"
+                        name="idade"
+                        required
+                        min="18"
+                        class="input input-bordered w-full"
+                        [(ngModel)]="idade"
+                        #idadeModel="ngModel"
+                    />
+                    @if ((idadeModel.touched || idadeModel.dirty) && idadeModel.invalid) {
+                        <label class="label">
+                            <span class="label-text-alt text-error">A idade mínima é 18 anos</span>
+                        </label>
+                    }
                 </div>
 
                 <div class="form-control w-full">
-                    <label class="label" for="senha">Senha: </label>
-                    <input type="password" id="senha" name="senha" required minlength="6" class="input input-bordered w-full" />
+                    <label class="label" for="senha">Senha *</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        required
+                        minlength="6"
+                        class="input input-bordered w-full"
+                        [(ngModel)]="senha"
+                        #senhaModel="ngModel"
+                    />
+                    @if ((senhaModel.touched || senhaModel.dirty) && senhaModel.invalid) {
+                        
+                        <label class="label">
+                            <span class="label-text-alt text-error">A senha deve ter no mínimo 6 caracteres</span>
+                        </label>
+                    }
                 </div>
 
                 <div class="form-control w-full">
-                    <label class="label" for="confirmarSenha">Confirmar Senha: </label>
+                    <label class="label" for="confirmarSenha">Confirmar senha *</label>
                     <input
                         type="password"
                         id="confirmarSenha"
@@ -33,37 +90,100 @@
                         required
                         minlength="6"
                         class="input input-bordered w-full"
+                        [(ngModel)]="confirmarSenha"
+                        #confirmarSenhaModel="ngModel"
                     />
+                    @if ((confirmarSenhaModel.touched || confirmarSenhaModel.dirty) && (confirmarSenhaModel.invalid || !senhasConferem)) {
+                        <label class="label">
+                            <span class="label-text-alt text-error">A confirmação de senha está inválida</span>
+                        </label>
+                    }
                 </div>
 
                 <div class="form-control w-full">
-                    <label class="label" for="genero">Gênero: </label>
-                    <select id="genero" name="genero" required class="select select-bordered w-full">
+                    <label class="label" for="genero">Gênero *</label>
+                    <select
+                        id="genero"
+                        name="genero"
+                        required
+                        class="select select-bordered w-full"
+                        [(ngModel)]="genero"
+                        #generoModel="ngModel"
+                    >
                         <option value="">Selecione</option>
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
                         <option value="outro">Outro</option>
                     </select>
+                    @if ((generoModel.touched || generoModel.dirty) && generoModel.invalid) {
+                        <label class="label">
+                            <span class="label-text-alt text-error">Selecione um gênero</span>
+                        </label>
+                    }
                 </div>
 
                 <div class="form-control w-full">
-                    <label class="label" for="cidade">Cidade: </label>
-                    <select name="cidade" id="cidade" required class="select select-bordered w-full">
+                    <label class="label" for="cidade">Cidade *</label>
+                    <select
+                        name="cidade"
+                        id="cidade"
+                        required
+                        class="select select-bordered w-full"
+                        [(ngModel)]="cidade"
+                        #cidadeModel="ngModel"
+                    >
                         <option value="">Selecione</option>
                         <option value="Colatina">Colatina</option>
-                        <option value="São Mateus">São Mateus</option>
+                        <option value="Marilândia">Marilândia</option>
                         <option value="Linhares">Linhares</option>
+                        <option value="Vitória">Vitória</option>
+                        <option value="Serra">Serra</option>
+                        <option value="Outra">Outra</option>
                     </select>
+                    @if ((cidadeModel.touched || cidadeModel.dirty) && cidadeModel.invalid) {
+                        <label class="label">
+                            <span class="label-text-alt text-error">Selecione uma cidade</span>
+                        </label>
+                    }
                 </div>
-                
 
                 <label class="label cursor-pointer justify-start gap-3">
-                    <input type="checkbox" id="termos" name="termos" required class="checkbox checkbox-primary" />
-                    <span class="label-text">Aceito os termos e condições</span>
+                    <input
+                        type="checkbox"
+                        id="termos"
+                        name="termos"
+                        required
+                        class="checkbox checkbox-primary"
+                        [(ngModel)]="termos"
+                        #termosModel="ngModel"
+                    />
+                    <span class="label-text">Aceito os termos e condições *</span>
                 </label>
+                @if ((termosModel.touched || termosModel.dirty) && termosModel.invalid) {
+                    <label class="label -mt-2">
+                        <span class="label-text-alt text-error">É obrigatório aceitar os termos</span>
+                    </label>
+                }
 
-                <button type="submit" class="btn btn-primary mt-2 w-full">Enviar</button>
+                <button type="submit" class="btn btn-primary mt-2 w-full" [disabled]="propForm.invalid || !senhasConferem">
+                    Cadastrar
+                </button>
             </form>
+
+            @if (fichaEnviada) {
+                <div class="divider my-4"></div>
+                <div class="rounded-box border border-base-300 bg-base-200 p-4">
+                    <h4 class="mb-2 text-base font-semibold">Resumo do cadastro</h4>
+                    <p><strong>Nome:</strong> {{ fichaEnviada.nome }}</p>
+                    <p><strong>E-mail:</strong> {{ fichaEnviada.email }}</p>
+                    <p><strong>Idade:</strong> {{ fichaEnviada.idade }}</p>
+                    <p><strong>Gênero:</strong> {{ fichaEnviada.genero }}</p>
+                    <p><strong>Cidade:</strong> {{ fichaEnviada.cidade }}</p>
+                    <p><strong>Senha:</strong> {{ fichaEnviada.senhasConferidas ? 'Conferida' : 'Não conferida' }}</p>
+                    <p><strong>Termos:</strong> {{ fichaEnviada.termos ? 'Aceito' : 'Não aceito' }}</p>
+                </div>
+            }
         </div>
     </div>
 </section>
+    
